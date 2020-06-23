@@ -1,0 +1,26 @@
+bindings:
+  - members:
+      - user:roopa@bharathkumaraju.com
+    role: roles/compute.admin
+  - members:
+      - serviceAccount:service-202016682554@compute-system.iam.gserviceaccount.com
+    role: roles/compute.serviceAgent
+  - members:
+      - serviceAccount:202016682554-compute@developer.gserviceaccount.com
+      - serviceAccount:202016682554@cloudservices.gserviceaccount.com
+      - user:roopa@bharathkumaraju.com
+    role: roles/editor
+  - members:
+      - user:bharath@bharathkumaraju.com
+    role: roles/owner
+  - members:
+      - user:roopa@bharathkumaraju.com
+    role: roles/storage.objectViewer
+  - members:
+      - user:hyma@bharathkumaraju.com
+    role: roles/storage.objectCreator
+  - members:
+      - user:hyma@bharathkumaraju.com
+    role: roles/storage.objectViewer
+etag: BwWoupFcKpc=
+version: 1
