@@ -1,0 +1,23 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    run: spikeysales-app 
+  name: spikeysales-app 
+spec: 
+  minReadySeconds: 60 
+  selector:
+    matchLabels:
+      run: spikeysales-app
+  template: 
+    metadata:
+      labels:
+        run: spikeysales-app 
+    spec: 
+      containers:
+      - image: k8s.gcr.io/serve_hostname:v1.4 
+        name: hostname 
+        ports:
+        - containerPort: 9376 
+          protocol: TCP
+      terminationGracePeriodSeconds: 60

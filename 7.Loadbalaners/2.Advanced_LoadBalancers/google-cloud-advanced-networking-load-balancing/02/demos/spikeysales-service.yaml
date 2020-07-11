@@ -1,0 +1,14 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: spikeysales-service 
+  annotations:
+    cloud.google.com/neg: '{"ingress": true}' 
+spec: 
+  selector:
+    run: spikeysales-app 
+  ports:
+  - port: 80 
+    protocol: TCP
+    targetPort: 9376
+ 
