@@ -1,7 +1,7 @@
 #Create an instance
 
 Go to the compute engine -> VM instances ->
-	Name = spikey-webserver-instance
+	Name = bharath-webserver-instance
 	zone = us-central1-b
 	Machine = micro
 Allow both the HTTP and HTTPS traffic
@@ -30,20 +30,20 @@ Check wheter the instance is present over there or not
 
 #Create custom image out of it
 	Create a image
-		name = spikey-webserver-image
-		sourcedisk = spikey-webserver-instance
+		name = bharath-webserver-image
+		sourcedisk = bharath-webserver-instance
 
 #Create an instance template using this custom image
 
 Go to the instance page -> create a new instance template
-	name= spikey-webserver-template
+	name= bharath-webserver-template
 	machine = micro
-	boot-disk = spikey-webserver-image
+	boot-disk = bharath-webserver-image
 	allow both HTTPS and HTTP traffic
 
 
 #create a Health check
-name = spikey-webserver-health-check
+name = bharath-webserver-health-check
 protocol = HTTP
 Port = 80
 Check-interval = 5
@@ -52,7 +52,7 @@ Healthy threshold =2
 Unhealthy threshold =2
 
 #Create a Firewall Rule
-name = spikey-webserver-firewall-rule
+name = bharath-webserver-firewall-rule
 Network = default
 Add target tags = http-tag
 Source Filter = IP ranges
@@ -65,26 +65,26 @@ tcp:80
 
 #Create an instance group
  Go to the instance group
- 	name= spikey-us-webserver-instancegroup
+ 	name= bharath-us-webserver-instancegroup
  	location = multizone
  	region = us-central
- 	instance-templet=spikey-webserver-template
+ 	instance-templet=bharath-webserver-template
  	Autoscale =on
  	Maximum instances = 5
 
- 	create a new health-check = spikey-webserver-health-check
+ 	create a new health-check = bharath-webserver-health-check
  	delay = 60
 
 #Create 2nd Instance group
  Go to the instance group
- 	name= spikey-europe-webserver-instancegroup
+ 	name= bharath-europe-webserver-instancegroup
  	location = multizone
  	region = europe-north
- 	instance-templet=-spikey-webserver-template
+ 	instance-templet=-bharath-webserver-template
  	Autoscale =on
  	Maximum instances = 5
 
- 	create a new health-check = spikey-webserver-health-check
+ 	create a new health-check = bharath-webserver-health-check
  	delay = 60
 
 Copy the link and check in a new tab
@@ -92,14 +92,14 @@ Copy the link and check in a new tab
 #Create a load balancer
 Create a load balancer
 	type = HTTP load balancer
-	name = spikey-webserver-lb
+	name = bharath-webserver-lb
 	Frontend configuration
-		name = spikey-webserver-frontend
+		name = bharath-webserver-frontend
 	Backend configuration
-		name= spikey-webserver-backend
-		instance group = spikey-us-webserver-instancegroup
-						 spikey-europe-webserver-instancegroup
-		health-check = spikey-webserver-health-check
+		name= bharath-webserver-backend
+		instance group = bharath-us-webserver-instancegroup
+						 bharath-europe-webserver-instancegroup
+		health-check = bharath-webserver-health-check
 create
 
 check whether the instance group is up or not
@@ -108,7 +108,7 @@ Heat the IP address of Frontend
 #Add traffic in the Load balancer
 
 Create an instance
-	name=spikey-traffic-test
+	name=bharath-traffic-test
 	zone=us-central1-c
 	machine-type= micro
 	boot-disk= asian-1
