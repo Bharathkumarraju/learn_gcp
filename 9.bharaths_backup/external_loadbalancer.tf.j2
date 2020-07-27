@@ -1,0 +1,63 @@
+{%- if external_loadbalancer is defined and external_loadbalancer.name is defined %}
+
+resource "google_compute_managed_ssl_certificate" "default" {
+  provider = google-beta
+  name = "{{external_loadbalancer.name}}-cert"
+  project = "{{ external_loadbalancer.project }}"
+
+  managed {
+    domains = ["{{external_loadbalancer.domain_name}}"]
+  }
+}
+
+module "gce-lb-http" {
+  source            = "GoogleCloudPlatform/lb-http/google"
+  version           = "{{ external_loadbalancer.version | default('~> 2.4') }}"
+  name              = "{{ external_loadbalancer.name }}"
+  project           = "{{ external_loadbalancer.project }}"
+  target_tags       = []
+  create_address    = true
+  ssl               = true
+  ssl_certificates  = [google_compute_managed_ssl_certificate.default.id]
+  use_ssl_certificates = true
+  backends = {
+    "{{ external_loadbalancer.backend_name }}" = {
+      description                     = null
+      protocol                        = "HTTP"
+      port                            = "{{ external_loadbalancer.random_port }}"
+      port_name                       = null
+      timeout_sec                     = 10
+      connection_draining_timeout_sec = null
+      enable_cdn                      = false
+      session_affinity                = null
+      affinity_cookie_ttl_sec         = null
+      health_check = {
+        check_interval_sec  = null
+        timeout_sec         = null
+        healthy_threshold   = null
+        unhealthy_threshold = null
+        request_path        = "/"
+        port                = "{{ external_loadbalancer.random_port }}"
+        host                = null
+        logging             = null
+      }
+       groups = [
+        {
+          group                        = "test"
+          balancing_mode               = null
+          capacity_scaler              = null
+          description                  = null
+          max_connections              = null
+          max_connections_per_instance = null
+          max_connections_per_endpoint = null
+          max_rate                     = null
+          max_rate_per_instance        = null
+          max_rate_per_endpoint        = null
+          max_utilization              = null
+        },
+      ]
+    }
+  }
+}
+
+{%- endif %}

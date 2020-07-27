@@ -1,0 +1,6 @@
+indexes:
+- kind: Guestbook_entries
+  ancestor: yes
+  properties:
+  - name: date
+    direction: desc

@@ -1,0 +1,14 @@
+
+
+   	Employee Name        Phone Number     Email ID
+
+   	Albert, Michal        789412123    Michal.a@gmail.com 	     
+   	Bozzi, Charles        741852963    bozzi23.a@gmail.com    	       
+   	Butler, Webster       753951456    webstar1a@yahoo.com
+   	Hopes, Jon            741123852    jhon.hopes@gmail.com
+   	Philips, Shawn        741123451    captainphilip@hotmail.com
+   	Hendricks, Richard    741123159    richard45@gmail.com
+   	Lee, Stan             123548764    phuplee@gmail.com
+   	Bharati, Uma          125413897    uma12@gmail.com
+   	Singh, Robin          124894652    singh9245@gmail.com
+   	Stefan, Samual        334512562    samualstefan@gmail.com  

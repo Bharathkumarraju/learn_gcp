@@ -1,0 +1,9 @@
+  
+  	 	Employee Name             SSN
+
+  		Ema Roberts           284-79-513
+   		Jackie Smith          851-96-523  
+   		Tyler Parker          129-84-744
+   		Maria Johnson         684-55-325  
+   		Tyler Parker          741-85-579  
+   		Jon Roberts           160-78-963 

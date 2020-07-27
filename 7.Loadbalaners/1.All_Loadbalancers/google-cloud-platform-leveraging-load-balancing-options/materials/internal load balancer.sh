@@ -197,15 +197,14 @@ Confirm that you now have two instance groups, each with two instances
 
 
 #Create a health check
-gcloud compute health-checks create tcp bharath-tcp-health-check \
+gcloud compute health-checks create tcp test-tcp-health-check \
     --port 80
-    clear
 
 #Create a backend service
-gcloud compute backend-services create bharath-internal-lb \
+gcloud compute backend-services create test-internal-lb \
     --load-balancing-scheme internal \
     --region us-central1 \
-    --health-checks bharath-tcp-health-check \
+    --health-checks test-tcp-health-check \
     --protocol tcp
 
 #Add instance groups to your backend service

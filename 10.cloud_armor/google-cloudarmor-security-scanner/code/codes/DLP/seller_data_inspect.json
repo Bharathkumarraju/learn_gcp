@@ -1,0 +1,51 @@
+{  
+   "inspectJob":{  
+      "storageConfig":{  
+         "cloudStorageOptions":{  
+            "fileSet":{  }
+         }
+      },
+      "inspectConfig":{  
+         "infoTypes":[  
+            {  
+               "name":"PHONE_NUMBER"
+            },
+            {  
+               "name":"US_SOCIAL_SECURITY_NUMBER"
+            },
+            {  
+               "name":"INDIA_PAN_INDIVIDUAL"
+            },
+            {  
+               "name":"CHINA_PASSPORT"
+            },
+            {  
+               "name":"CANADA_PASSPORT"
+            },
+            {  
+               "name":"BRAZIL_CPF_NUMBER"
+            },
+            {  
+               "name":"EMAIL_ADDRESS"
+            }
+
+         ]
+         "excludeInfoTypes":false,
+         "includeQuote":true,
+         "minLikelihood":"LIKELY"
+      },
+      "actions":[  
+         {  
+            "saveFindings":{  
+               "outputConfig":{  
+                  "table":{  
+                     "projectId":"spikey-security",
+                     "datasetId":"seller_dataset",
+                     "tableId":"seller_data_table"
+                  }
+               }
+            }
+         }
+      ]
+   }
+}

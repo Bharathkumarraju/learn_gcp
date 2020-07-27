@@ -1,0 +1,25 @@
+{  
+   "inspectTemplate":{  
+      "displayName":"sellers_information",
+      "description":"scan for seller's data",
+      "inspectConfig":{  
+         "infoTypes":[  
+            {  
+               "name":"PHONE_NUMBER"
+            },
+            {  
+               "name":"US_SOCIAL_SECURITY_NUMBER"
+            },
+            {  
+               "name":"EMAIL_ADDRESS"
+            }
+
+         ]
+         "minLikelihood":"POSSIBLE",
+         "limits":{  
+            "maxFindingsPerRequest":100
+         },
+         "includeQuote":true
+      }
+   }
+}

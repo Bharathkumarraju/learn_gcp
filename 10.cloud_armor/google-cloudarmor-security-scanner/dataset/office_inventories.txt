@@ -1,0 +1,24 @@
+
+   		Office Equipment.                  Price Range
+
+   		Air Conditioner.                   $500 - $1,000
+   		Bookcase                           $500 - $1,000
+   		Calculator.                           $75 - $200
+   		Chair                              $300 - $1,000
+   		Coat Rack.                            $50 - $150
+   		Computer Hardware Software      $1,500 - $50,000
+   		Credenza                           $350 - $2,000
+   		Desk                               $400 - $3,000
+   		Dictation Equipment                $500 - $1,500
+   		Fax Machine                      $2,000 - $5,000
+   		Filing Cabinet                     $400 - $3,000
+   		Kitchen/Lunch Room Equipment         $2,000 & Up
+   		Mail Sorter                          $200 - $700
+   		Partitions                       $1,500 - $3,000
+   		Photocopier                     $5,000 - $60,000
+   		Postage Metre                    $1,000 - $7,000
+   		Postal Scale                       $500 - $3,000
+   		Promotional Material               $250 - $2,500
+   		Printer & Stand                    $500 - $3,000
+   		Safe or Vault                     $750 - $10,000
+
