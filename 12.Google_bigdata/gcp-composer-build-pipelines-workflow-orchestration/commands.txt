@@ -1,0 +1,185 @@
+﻿>> gsutil cat gs://us-central1-spikey-test-env-959024cc-bucket/airflow.cfg
+
+
+[ Run python_bash.py ]
+
+
+[ Run all_success_python_bash.py ]
+
+
+[ Run one_failed_python_bash.py ]
+
+
+[ Run all_done_python_bash.py ]
+
+
+[ Run most_common_element_scipy.py ]
+
+
+[ Upload requirements.txt ]
+
+
+>> ls
+>> pwd
+>>
+
+
+gcloud composer environments update spikey-test-environment \
+--update-pypi-packages-from-file /home/cloud_user/requirements.txt \
+--location us-central1 \
+--async
+
+
+
+
+
+
+[ Run python_bash_dummy.py ]
+
+
+[ Run branching_python_operator.py ]
+
+
+>>
+   gcloud composer environments run spikey-test-environment \
+    --location us-central1 variables -- \
+    --set gcp_project spikey-gcp
+
+
+>>
+   gcloud composer environments run spikey-test-environment \
+    --location us-central1 variables -- \
+    --set gcs_source_bucket gs://spikey_catalog_image_bucket
+
+
+>>
+   gcloud composer environments run spikey-test-environment \
+    --location us-central1 variables -- \
+    --set gcs_dest_bucket gs://spikey_catalog_image_bucket_backup
+
+
+[ Run gcs_gcs.py ]
+
+
+>>
+gcloud composer environments storage dags delete \
+--environment spikey-test-environment \
+--location us-central1 gcs_gcs.py
+
+
+>>
+gcloud composer environments storage dags delete \
+--environment spikey-test-environment \
+--location us-central1 python_bash_dummy.py
+
+>> gsutil ls -r gs://us-central1-spikey-test-env-959024cc-bucket/logs
+
+
+>>
+gcloud beta composer environments list \
+--locations=us-central1
+
+
+>>
+gcloud composer environments delete spikey-test-environment \
+--location us-central1
+
+
+>>
+gcloud beta composer environments create spikey-composer-environment \
+--location us-central1 \
+--zone us-central1-b \
+--python-version=3
+
+
+>>
+gcloud composer environments update spikey-composer-environment \
+--location us-central1 \
+--update-env-variables=SENDGRID_MAIL_FROM=cloud.user@loonycorn.com
+
+
+>>
+gcloud composer environments describe spikey-composer-environment \
+--location us-central1
+
+
+
+
+>>
+INSERT INTO spikey_composer_dataset.spikey_products_table (product_name, product_id, product_price, sale)
+VALUES('Trendy Wrist Friendship Band', 'FUR-BO-10001798', '$4.99', False),
+     ('Led Light Snowman Christmas Decoration with Tree', 'OFF-AR-10000246', '$5.35', True),
+     ('Merry Christmas Stocking Decoration', 'OFF-ST-10004186', '$0.46', True)
+
+
+>>
+SELECT product_id, product_name FROM `spikey-gcp.spikey_composer_dataset.spikey_products_table`
+WHERE sale = True
+
+
+>>
+   gcloud composer environments run spikey-composer-environment \
+    --location us-central1 variables -- \
+    --set gcp_project spikey-gcp
+
+
+>>
+   gcloud composer environments run spikey-composer-environment \
+    --location us-central1 variables -- \
+    --set bq_dataset_name spikey_composer_dataset
+
+
+
+
+>>
+   gcloud composer environments run spikey-composer-environment \
+    --location us-central1 variables -- \
+    --set bq_table_id spikey_composer_dataset.spikey_products_table
+
+
+>>
+
+
+gcloud composer environments run spikey-composer-environment \
+    --location us-central1 variables -- \
+    --set gcs_bucket gs://spikey_products_on_sale_bucket
+
+
+>>
+
+
+gcloud composer environments run spikey-composer-environment \
+    --location us-central1 variables -- \
+    --set email Alice@loonycorn.com
+
+
+
+
+
+
+[ Run sale_product_notification.py ]
+
+
+>>
+INSERT INTO spikey_composer_dataset.spikey_products_table (product_name, product_id, product_price, sale)
+VALUES('New Years Eve Party Decoration Balloons Kit', 'OFF-PF-15404213', '$0.46', True)
+
+
+>>
+   gcloud composer environments run spikey-composer-environment \
+    --location us-central1 variables -- \
+    --set gcs_bucket gs://us-central1-spikey-composer-486ba46f-bucket/dags
+
+
+>>
+   gcloud composer environments run spikey-composer-environment \
+    --location us-central1 variables -- \
+    --set gce_zone us-central1-a
+
+
+[ Upload hadoop_wordcount.py ]
+[ Upload doc.txt ]
+
+
+>>
+gsutil cat gs://us-central1-spikey-composer-486ba46f-bucket/dags/wordcount/20181215-065546/part-r-00000
