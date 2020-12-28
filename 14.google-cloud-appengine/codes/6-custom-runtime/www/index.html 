@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Puppies</title>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+        <!-- Our Custom CSS -->
+        <link rel="stylesheet" href="css/style.css">
+
+        <style type="text/css">
+        </style>
+    </head>
+    <body>
+
+        <div class="wrapper">
+            <!-- Sidebar Holder -->
+            <nav id="sidebar">
+                <div class="sidebar-header">
+                    <h3>SpikeySales</h3>
+                </div>
+
+                <ul class="list-unstyled components">
+                    <li>
+                        <a href="#">Home</a>
+                    </li>
+                    <li>
+                        <a href="corousel.html">Images</a>
+                    </li>
+                    <li>
+                        <a href="#">Contacts</a>
+                    </li>
+                </ul>
+
+                <ul class="list-unstyled CTAs">
+                    <li><a href="login.html">Login</a></li>
+                    <li><a href="#">Sign Up</a></li>
+                </ul>
+            </nav>
+
+            <!-- Page Content Holder -->
+            <div id="content">
+
+                <nav class="navbar navbar-default">
+                    <div class="container-fluid">
+
+                        <div class="navbar-header">
+                    
+                            <h2 id="heading">Spikey Sales</h2>
+                        </div>
+
+                        <div class="navbar-collapse" id="bs-example-navbar-collapse-1" style="max-width: 300px;">
+                            <ul class="nav navbar-nav navbar-right nav-ul">
+                                <li class="nav-li"><a href="#" style="color:white;">Home</a></li>
+                                <li class="nav-li"><a href="corousel.html" style="color:white;">Images</a></li>
+                                <li class="nav-li"><a href="#" style="color:white;">Contacts</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+                <p>A dog is the only thing on earth that loves you more than you love yourself.</p> 
+                <p>Whoever said you can’t buy happiness forgot about puppies.</p>
+                <p>Even within breeds there's enormous variety in the way a dog acts and reacts to the world around him.
+                    Those differences can be due to how much he was handled as a youngster,
+                    how well he was trained after bringing him home,
+                    and of course the genetic luck of the draw.</p>
+
+                <div class="line"></div>
+
+                <div class="dog-image">
+                    <img src="https://images.pexels.com/photos/1108099/pexels-photo-1108099.jpeg?cs=srgb&dl=adorable-animal-breed-1108099.jpg&fm=jpg" height="200" width="300">
+                    <p> </p>
+                    <h2>Golden Retiever</h2>
+                <p>He is a large-sized breed of dog bred as gun dogs to retrieve shot waterfowl 
+                such as ducks and upland game birds during hunting and shooting parties, 
+                and were named 'retriever' because of their ability to retrieve shot game undamaged.</p>
+                </div>
+                    
+                
+                    
+                <div class="line"></div>
+
+                <div class="dog-image">
+                <img src="https://images.pexels.com/photos/257540/pexels-photo-257540.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" height="200" width="300">
+                    <p> </p>
+                </div>
+
+                <h2>Labrador</h2>
+                <p>He is a type of retriever-gun dog. A favourite disability assistance breed in many countries, 
+                Labradors are frequently trained to aid the blind, those who have autism, to act as a therapy dog. 
+                Additionally, they are prized as sporting and hunting dogs.</p>
+
+
+                <div class="line"></div>
+
+                <div class="dog-image">
+                <img src="https://images.pexels.com/photos/208834/pexels-photo-208834.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" height="200" width="300">
+                    <p> </p>
+                </div>
+
+                <h2>German Shepherd</h2>
+                <p>He is a breed of medium to large-sized working dog that originated in Germany.
+                    The breed was once known as the Alsatian in Britain and Ireland.The breed is a relatively new breed of dog, 
+                    with their origin dating to 1899. As part of the Herding Group, 
+                    German Shepherds are working dogs developed originally for herding sheep. 
+                    Since that time however, because of their strength, intelligence, trainability, and obedience, 
+                    German Shepherds around the world are often the preferred breed.</p>
+
+                <div class="line"></div>
+
+                <div class="dog-image">
+                <img src="https://images.pexels.com/photos/169524/pexels-photo-169524.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260" height="200" width="300">
+                    <p> </p>
+                </div>
+
+                <h2>Dobermann</h2>
+                <p>He is a medium-large breed of domestic dog. The Dobermann has a long muzzle and stands 
+                on its toes and is not usually heavy-footed. Ideally, they have an even and graceful gait. 
+                Dobermanns have markings on the chest, paws/legs, muzzle, above the eyes, and underneath the tail.</p>
+
+                
+            </div>
+        </div>
+
+    </body>
+</html>
+

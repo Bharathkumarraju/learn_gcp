@@ -1,0 +1,12 @@
+{  
+   "item":{  
+      "value":"SpikeySales' headquarters is located at  8775 Sugar Street Lancaster, NY 14086, United States"
+   },
+   "inspectConfig":{  
+      "includeQuote":true,
+      "minLikelihood":"POSSIBLE",
+      "infoTypes":{  
+         "name":"LOCATION"
+      }
+   }
+}

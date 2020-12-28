@@ -1,0 +1,41 @@
+{  
+  "item":{  
+    "value":"My contact number is 555-869-512."
+  }, 
+  "deidentifyConfig":{ 
+
+    "infoTypeTransformations":{ 
+
+      "transformations":[
+
+        {  
+          "infoTypes":[  
+            {  
+              "name":"PHONE_NUMBER"
+            }
+          ],
+          
+          "primitiveTransformation":{  
+            "characterMaskConfig":{  
+              "maskingCharacter":"#",
+              "reverseOrder":false,
+              "charactersToIgnore":[  
+                {  
+                  "charactersToSkip":".@"
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  },
+  "inspectConfig":{ 
+
+    "infoTypes":[  
+      {  
+        "name":"PHONE_NUMBER"
+      }
+    ]
+  }
+}

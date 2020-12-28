@@ -1,0 +1,18 @@
+{  
+   "item":{  
+      "value":"Jack's credit card number is 7894-5426-7845"
+   },
+   "inspectConfig":{  
+      "customInfoTypes":[  
+         {  
+            "infoType":{  
+               "name":"CARD_NUMBER"
+            },
+            "regex":{  
+               "pattern":"[1-9]{4}-[1-9]{4}-[1-9]{4}"
+            },
+            "likelihood":"POSSIBLE"
+         }
+      ]
+   }
+}

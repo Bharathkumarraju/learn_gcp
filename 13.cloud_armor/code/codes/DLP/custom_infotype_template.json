@@ -1,0 +1,22 @@
+{  
+   "config":{  
+      "displayName":"sensitive information",
+      "description":"Project code names",
+      "largeCustomDictionary":{  
+         "outputPath":{  
+            "path":"gs://project_details"
+         },
+         "bigQueryField":{  
+            "table":{  
+               "datasetId":"project_codename_dataset",
+               "projectId":"spikey-security",
+               "tableId":"project_codename_table"
+            },
+            "field":{  
+               "name":"Project_codename"
+            }
+         }
+      }
+   },
+   "storedInfoTypeId":"sensitive-detail"
+}

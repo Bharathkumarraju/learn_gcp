@@ -1,0 +1,17 @@
+{  
+   "inspectConfig":{  
+      "customInfoTypes":[  
+         {  
+            "infoType":{  
+               "name":"inspect internal project code names"
+            },
+            "storedType":{  
+               "name":"projects/spikey-security/storedInfoTypes/sensitive-detail"
+            }
+         }
+      ]
+   },
+   "item":{  
+      "value":"This is a great new addition for the SELLEASY and CATWORM features however I am not sure that LIKEALOT can use this"
+   }
+}

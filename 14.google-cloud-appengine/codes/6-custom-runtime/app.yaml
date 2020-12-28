@@ -1,0 +1,3 @@
+service: spikey-app-service
+runtime: custom
+env: flex

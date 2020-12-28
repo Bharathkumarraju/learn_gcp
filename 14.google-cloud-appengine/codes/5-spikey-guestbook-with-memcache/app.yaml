@@ -1,0 +1,14 @@
+service: spikey-app-service
+runtime: python27
+api_version: 1
+threadsafe: true
+
+handlers:
+- url: /.*
+  script: guestbook.app
+
+libraries:
+- name: webapp2
+  version: latest
+- name: jinja2
+  version: latest
