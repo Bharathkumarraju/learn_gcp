@@ -1,0 +1,252 @@
+
+<!DOCTYPE html>
+<html>
+  <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Dogs</title>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+
+	<style type="text/css">
+		/*
+    STYLE
+*/
+		
+		@import "https://fonts.googleapis.com/css?family=Sunflower:300";
+		body {
+			font-family: Sunflower, sans-serif;
+			background: #fafafa;
+		}
+		
+		h1, h2,h3,h4,h5, small{
+			font-family: Sunflower, sans-serif;
+			color: #999;
+		}
+		
+		p {
+			font-family: Sunflower, sans-serif;
+			font-size: 1.1em;
+			font-weight: 300;
+			line-height: 1.7em;
+			color: #999;
+		}
+		
+		a,
+		a:hover,
+		a:focus {
+			color: inherit;
+			text-decoration: none;
+			transition: all 0.3s;
+		}
+		
+		#heading {
+			display: inline-block;
+			margin: 10px;
+			color: white;
+		}
+		
+		.navbar {
+			padding: 15px 10px;
+			background: #56677C;
+			border: none;
+			border-radius: 0;
+			margin-bottom: 40px;
+			box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1);
+		}
+		
+		.navbar-btn {
+			box-shadow: none;
+			outline: none !important;
+			border: none;
+		}
+		
+		.line {
+			width: 100%;
+			height: 1px;
+			border-bottom: 1px dashed #ddd;
+			margin: 40px 0;
+		}
+		
+		.nav-ul {
+			display: inline;
+			float: right;
+		}
+		
+		.nav-li {
+			display: inline-block;
+			margin: 0px 5px;
+		}
+		/*
+    SIDEBAR STYLE
+*/
+		
+		.wrapper {
+			display: flex;
+		}
+		
+		#sidebar {
+			min-width: 250px;
+			max-width: 250px;
+			background: #56677C;
+			color: #fff;
+			transition: all 0.3s;
+		}
+		
+		#sidebar.active {
+			margin-left: -250px;
+		}
+		
+		#sidebar .sidebar-header {
+			padding: 20px;
+			background: #56677C;
+		}
+		
+		#sidebar ul.components {
+			padding: 20px 0;
+			border-bottom: 1px solid #47748b;
+		}
+		
+		#sidebar ul p {
+			color: #fff;
+			padding: 10px;
+		}
+		
+		#sidebar ul li a {
+			padding: 10px;
+			font-size: 1.1em;
+			display: block;
+		}
+		
+		#sidebar ul li a:hover {
+			color: #7386D5;
+			background: #fff;
+		}
+		
+		ul.CTAs {
+			padding: 20px;
+		}
+		
+		ul.CTAs a {
+			text-align: center;
+			font-size: 0.9em !important;
+			display: block;
+			border-radius: 5px;
+			margin-bottom: 5px;
+		}
+		/*
+    CONTENT STYLE
+*/
+		
+		#content {
+			width: 100%;
+			padding: 20px;
+			min-height: 100vh;
+			transition: all 0.3s;
+		}
+		
+		.rounded-circle {
+			border-radius: 50%;
+		}
+		
+		.dog-image {
+			display: inline-block;
+			overflow: hidden;
+			background-position: center;
+		}
+		/*
+    MEDIAQUERIES
+*/
+		
+		@media (max-width: 768px) {
+			#sidebar {
+				margin-left: -250px;
+			}
+			#sidebar.active {
+				margin-left: 0;
+			}
+		}
+	</style>
+
+  </head>
+  <body>
+  
+ <div class="wrapper">
+ 
+ 		<!-- Sidebar Holder -->
+		<nav id="sidebar">
+			<div class="sidebar-header">
+				<h3 style="color:white;">SpikeySales</h3>
+			</div>
+
+			<ul class="list-unstyled components">
+				<li>
+					<a href="/dogs">Home</a>
+				</li>
+				<li>
+					<a href="#">Images</a>
+				</li>
+				<li>
+					<a href="#">Contacts</a>
+				</li>
+			</ul>
+		</nav>
+ 
+ 		<!-- Page Content Holder -->
+		<div id="content">
+
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+
+					<div class="navbar-header">
+						<button type="button" id="sidebarCollapse" class="btn btn-info navbar-btn">
+                                <i class="glyphicon glyphicon-align-left"></i>
+                                <span> Menu </span>
+                            </button>
+						<h2 id="heading">Spikey Sales</h2>
+					</div>
+
+					<div class="navbar-collapse" id="bs-example-navbar-collapse-1" style="max-width: 300px;">
+						<ul class="nav navbar-nav navbar-right nav-ul">
+							<li class="nav-li"><a href="/dogs" style="color:white;">Home</a></li>
+							<li class="nav-li"><a href="/dogs/mine" style="color:white;">My Dogs</a></li>
+
+					        <li class="navbar-text navbar-right">
+					        {% if session.profile %}
+					          <a href="/logout" style="color:white;">
+					            {% if session.profile.image %}
+					              <img class="img-circle .rounded-circle" src="{{session.profile.image.url}}" width="30" alt="image">
+					            {% endif %}
+					            {{session.profile.displayName}}
+					          </a>
+					        {% else %}
+					          <a href="/oauth2authorize" style="color:white;" >Login</a>
+					        {% endif %}
+					        </li>
+
+						</ul>
+					</div>
+				</div>
+			</nav>
+
+		    <div class="container">
+		      {% block content %}{% endblock %}
+		    </div>
+		    {{user}}
+
+		</div>
+	</div>
+	
+	<!-- jQuery CDN -->
+	<script src="https://code.jquery.com/jquery-1.12.0.min.js"></script> -
+	<script type="text/javascript">
+		$(document).ready(function() {
+			$('#sidebarCollapse').on('click', function() {
+				$('#sidebar').toggleClass('active');
+			});
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+service: spikey-app-service
+
+runtime: python27
+api_version: 1
+threadsafe: yes
+
+inbound_services:
+- mail
+
+handlers:
+- url: /mail_alert
+  script: mail_alert.app
+
+- url: /
+  static_files: index.html
+  upload: index.html

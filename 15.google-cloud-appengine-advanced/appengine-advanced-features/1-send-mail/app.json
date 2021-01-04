@@ -1,0 +1,34 @@
+{
+  "deployment": {
+    "files": {
+      "mail_alert.py": {
+        "sourceUrl": "https://storage.googleapis.com/mail_alert_files/mail_alert.py"
+      },
+      "index.html": {
+        "sourceUrl": "https://storage.googleapis.com/mail_alert_files/index.html"
+      },
+    }
+  },
+  
+  "handlers": [
+    {
+      "script": {
+        "scriptPath": "send_mail.app"
+      }, 
+      "urlRegex": "/send_mail"
+    }, 
+    {
+      "staticFiles": {
+        "path": "index.html", 
+        "uploadPathRegex": "index.html"
+      }, 
+      "urlRegex": "/"
+    }
+  ], 
+  "inboundServices": [
+    "INBOUND_SERVICE_MAIL"
+  ], 
+  "runtime": "python27", 
+  "threadsafe": true,
+  "id": "send-mail"
+}

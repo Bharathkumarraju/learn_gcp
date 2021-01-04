@@ -1,0 +1,3 @@
+queue:
+- name: dog-pull-counter
+  mode: pull

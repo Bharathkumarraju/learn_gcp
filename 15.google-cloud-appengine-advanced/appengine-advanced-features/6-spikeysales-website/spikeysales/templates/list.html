@@ -1,0 +1,53 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3>{{action}} dog</h3>
+
+<form method="POST" enctype="multipart/form-data">
+
+  <div class="form-group">
+    <label for="title">Title</label>
+    <input type="text" name="title" id="title" value="{{dog.title}}" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label for="owner">Owner</label>
+    <input type="text" name="owner" id="owner" value="{{dog.owner}}" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label for="age">Age of Dog</label>
+    <input type="text" name="age" id="age" value="{{dog.age}}" class="form-control"/>
+  </div>
+
+  <div class="form-group">
+    <label for="description">Description</label>
+    <textarea name="description" id="description" class="form-control">{{dog.description}}</textarea>
+  </div>
+
+  <div class="form-group">
+    <label for="image">Cover Image</label>
+    <input type="file" name="image" id="image" class="form-control"/>
+  </div>
+
+  <div class="form-group" style="display: none">
+    <label for="imageUrl">Cover Image URL</label>
+    <input type="text" name="imageUrl" id="imageUrl" value="{{dog.imageUrl}}" class="form-control"/>
+  </div>
+
+  <div class="form-group" style="display: none">
+    <label for="createdBy">Created by</label>
+    <input type="text" name="createdBy" id="createdBy" value="{{dog.createdBy}}" class="form-control"/>
+  </div>
+
+  <div class="form-group" style="display: none">
+    <label for="createdById">Created by ID</label>
+    <input type="text" name="createdById" id="createdById" value="{{dog.createdById}}" class="form-control"/>
+  </div>
+
+  <button type="submit" class="btn btn-success">Save</button>
+</form>
+
+{% endblock %}

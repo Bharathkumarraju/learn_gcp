@@ -1,0 +1,4 @@
+queue:
+
+- name: dog-push-counter
+  rate: 1/s

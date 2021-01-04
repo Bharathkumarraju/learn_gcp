@@ -1,0 +1,5 @@
+
+cron:
+- description: "Weekly Offer Updates"
+  url: /
+  schedule: every sunday 09:00

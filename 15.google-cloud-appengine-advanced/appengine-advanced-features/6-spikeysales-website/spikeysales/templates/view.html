@@ -1,0 +1,40 @@
+
+{% extends "base.html" %}
+
+{% block content %}
+
+<h3><p>Spikey Dogs</p></h3>
+
+<div class="btn-group">
+  <a href="/dogs/{{dog.id}}/edit" class="btn btn-primary btn-sm">
+    <i class="glyphicon glyphicon-edit"></i>
+    Edit Dog Ad
+  </a>
+  <a href="/dogs/{{dog.id}}/delete" class="btn btn-danger btn-sm">
+    <i class="glyphicon glyphicon-trash"></i>
+    Delete Dog Ad
+  </a>
+</div><br /><br />
+
+<div class="media">
+  <div class="media-left">
+    {% if dog.imageUrl %}
+      <img class="dog-image" src="{{dog.imageUrl}}" alt="image" style"border: 5px;"">
+    {% else %} 
+      <img class="dog-image" src="http://placekitten.com/g/128/192" alt="image">
+    {% endif %}
+  </div>
+  <div class="media-body">
+  
+    <h4 class="dog-title">
+     <p> {{dog.title}}
+      <small>{{dog.age}}</small></p>
+    </h4>
+    <h5 class="dog-owner">By {{dog.owner|default('Unknown', True)}}</h5>
+    <p class="dog-description">{{dog.description}}</p>
+    <small class="dog-added-by">Added by {{dog.get('createdBy')|default('Anonymous', True)}}</small>
+    </p>
+  </div>
+</div>
+
+{% endblock %}

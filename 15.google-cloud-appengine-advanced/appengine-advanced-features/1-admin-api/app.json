@@ -1,0 +1,33 @@
+{
+  "deployment": {
+    "files": {
+      "main.py": {
+        "sourceUrl": "https://storage.googleapis.com/spikey-website/main.py"
+      },
+      "index.html": {
+        "sourceUrl": "https://storage.googleapis.com/soikey-website/index.html"
+      },
+    }
+  },
+  "handlers": [
+    {
+      "script": {
+        "scriptPath": "main.app"
+      }, 
+      "urlRegex": "/.*"
+    }
+  ], 
+  "libraries": [
+    {
+      "name": "webapp2", 
+      "version": "latest"
+    }, 
+    {
+      "name": "jinja2", 
+      "version": "latest"
+    }
+  ], 
+  "runtime": "python27", 
+  "threadsafe": true,
+  "id": "spikey-website"
+}
