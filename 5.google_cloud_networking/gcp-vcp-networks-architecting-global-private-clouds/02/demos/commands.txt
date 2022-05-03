@@ -1,0 +1,420 @@
+Module 1
+
+Demo 1
+Introduction to VPCs : default network with subnets, routes, and firewall rules.
+
+Navigate to Navigation menu> VPC network > VPC networks.
+
+View the routes
+
+In the left pane, click on Routes.
+Notice that there is a route for each subnet and one for the Default internet gateway (0.0.0.0./0).
+
+View the firewall rules
+
+In the left pane, click on Firewall rules.
+
+Delete the default network
+
+In the left pane, click on Firewall rules.
+
+Select all firewall rules and click DELETE.
+
+In the left pane, click on VPC networks.
+
+Click on the default network.
+
+Click Delete VPC network at the top of the dialog, 
+then click Delete to confirm the deletion of the default network.
+
+Wait for the network to be deleted before moving on.
+
+In the left pane, click on Routes.
+
+There are no routes.
+
+Try to create a VM instance
+
+Navigate to Navigation menu > Compute Engine > VM instances, 
+and then click Create to create a VM instance.
+
+Leave all the values at their default and click Create.
+
+Notice the error.
+
+Under the Firewall section, Click Management, disks, networking, SSH keys, 
+and then click Networking.
+
+
+Notice the No local network available error under Network interface.
+
+Click Cancel.
+
+Demo 2
+Creating a new auto mode VPC network
+
+Create an auto mode VPC network with Firewall rules
+
+Navigate to Navigation menu > VPC network > VPC networks, 
+and then click Create VPC network.
+
+Set the Name to spikey-globalvpc.
+
+For Subnet creation mode, click Automatic.
+
+For Firewall rules, check all available rules.
+
+Click Create
+
+
+Create a VM instance in us-central1
+
+Navigate to Navigation menu > Compute Engine > VM instances, and then click Create.
+
+Set the following values, leaving all others at their defaults:
+
+Property	Value 
+Name	spikey-server-us
+Region	us-central1
+Zone	 us-central1-c
+Machine type	micro (1 shared vCPU)
+
+Click Create, then wait for the instance to be created.
+
+
+
+Create a VM instance in europe-west1
+
+Click Create instance.
+
+Set the following values, leaving all others at their defaults:
+
+Property	Value
+Name	spikey-server-eu
+Region	europe-west1
+Zone	europe-west1-c
+Machine type	micro (1 shared vCPU)
+
+Click Create, then wait for the instance to be created.
+
+
+Verify connectivity for the VM instances
+In the Console, navigate to Navigation menu> Compute Engine > VM instances.
+For  spikey-server-us, click SSH to launch a terminal and connect. 
+To test connectivity to spikey-server-eu's internal IP, run the following command using spikey-server-eu's internal IP:
+ping -c 3 <Enter spikey-server-eu's internal IP here>
+Repeat the same test, this time using spikey-server-eu's name:
+ping -c 3 spikey-server-eu
+
+
+
+To test connectivity to spikey-server-eu's external IP, run the following command using spikey-server-eu's external IP:
+ping -c 3 <Enter spikey-server-eu's external IP here>
+
+Repeat for spikey-server-us
+
+
+Demo 3
+Creating a new VPC network with custom subnets
+
+Create the spikey-management-nw network using the GCP Console.
+Navigate to Navigation menu () > VPC network > VPC networks.
+Notice the default and spikey-globalvpc networks with their subnets.
+Click Create VPC Network.
+Set the Name to spikey-management-nw.
+For Subnet creation mode, click Custom.
+Set the following values, leave all other values at their defaults:
+Property
+Value (type value or select option as specified)
+Name
+spikey-management-subnet-us
+Region
+us-central1
+IP address range
+10.130.0.0/20
+Click Done.
+Click command line.
+Click Close.
+Click Create.
+Create the spikey-dev-nw network
+
+Run the following command, to create the spikey-dev-nw network:
+gcloud compute networks create spikey-dev-nw --subnet-mode=custom
+
+
+Run the following command, to create the spikey-dev-subnet-us subnet:
+gcloud compute networks subnets create spikey-dev-subnet-us \
+--network=spikey-dev-nw \
+--region=us-central1 \
+--range=172.16.0.0/24
+
+
+Run the following command, to create the spikey-dev-subnet-eu subnet:
+gcloud compute networks subnets create spikey-dev-subnet-eu \
+ --network=spikey-dev-nw \
+--region=europe-west1 \
+--range=172.20.0.0/20
+
+
+Run the following command, to list the available VPC networks:
+gcloud compute networks list
+
+
+
+Run the following command, to list the available VPC subnets (sorted by VPC network):
+gcloud compute networks subnets list --sort-by=NETWORK
+
+
+In the Console, navigate to Navigation menu () > VPC network > VPC networks.
+You see that the same networks and subnets are listed in the Console.
+  
+Module 2
+
+Demo 1
+Using firewall rules
+Create the firewall rules for spikey-management-nw
+In the Console, navigate to Navigation menu () > VPC network > Firewall rules.
+Click + Create Firewall Rule.
+Set the following values, leave all other values at their defaults:
+Property
+Value (type value or select option as specified)
+Name
+spikey-management-nw-allow-icmp-ssh-rdp
+Network
+spikey-management-nw
+Targets
+All instances in the network
+Source filter
+IP Ranges
+Source IP ranges
+0.0.0.0/0
+Protocols and ports
+Specified protocols and ports, icmp; 
+
+Click command line.
+Click Close.
+Click Create.
+Repeat for tcp:22; spikey-management-nw-allow-ssh and tcp:3389 spikey-management-nw-allow-rdp
+In Cloud Shell, run the following command to create the spikey-dev-nw-allow-icmp-ssh-rdp firewall rule:
+gcloud compute firewall-rules create spikey-dev-nw-allow-icmp-ssh-rdp  \
+--direction=INGRESS \
+--priority=1000 \
+--network=spikey-dev-nw \
+--action=ALLOW \
+--rules=icmp,tcp:22,tcp:3389 \
+--source-ranges=0.0.0.0/0
+
+
+Run the following command, to list all the firewall rules (sorted by VPC network):
+gcloud compute firewall-rules list --sort-by=NETWORK
+In the Console, navigate to Navigation menu () > VPC network > Firewall rules.
+
+Demo 2 
+Testing VM connectivity
+Create two VM instances:
+Create the  spikey-management-nw-vm-us instance using the GCP Console.
+In the Console, navigate to Navigation menu () > Compute Engine > VM instances.
+Click Create instance.
+Set the following values, leave all other values at their defaults:
+Property
+Value (type value or select option as specified)
+Name
+ spikey-management-nw-vm-us
+Region
+us-central1
+Zone
+us-central1-c
+Machine type
+1 vCPU
+Click Management, disks, networking, SSH keys.
+Click Networking.
+For Network interfaces, click the pencil icon to edit.
+Set the following values, leave all other values at their defaults:
+Property
+Value (type value or select option as specified)
+Network
+ spikey-management-nw
+Subnetwork
+ spikey-management-subnet-us
+Click Done.
+Click command line.
+Click Close.
+Click Create.
+Create the  instance using the Cloud Shell command line.
+gcloud compute instances create  spikey-dev-nw-vm-us \
+--zone=us-central1-c \
+--machine-type=n1-standard-1 \
+--subnet=spikey-dev-subnet-us 
+
+
+
+Run the following command, to list all the VM instances (sorted by zone):
+gcloud compute instances list --sort-by=ZONE
+
+
+In the Console, navigate to Navigation menu () > Compute Engine > VM instances.
+Click on Columns, then select Network.
+Ping the external IP addresses
+ 
+In the Console, navigate to Navigation menu () > Compute Engine > VM instances.
+For  spikey-server-us, click SSH to launch a terminal and connect.
+To test connectivity
+ping -c 3 <Enter  spikey-server-eu's external IP here>
+ping -c 3 <Enter  spikey-server-us's external IP here>
+ 
+To test connectivity to  spikey-dev-nw-vm-us's
+ping -c 3 <Enter  spikey-dev-nw-vm-us's external IP here>
+Ping the internal IP addresses
+In the Console, navigate to Navigation menu () > Compute Engine > VM instances.
+Return to the SSH terminal for  spikey-server-us.
+To test connectivity to  spikey-server-eu's internal IP, 
+ping -c 3 <Enter  spikey-server-eu's internal IP here>
+To test connectivity to  spikey-management-nw-vm-us's internal IP, 
+ping -c 3 <Enter  spikey-management-nw-vm-us's internal IP here>
+
+
+To test connectivity to  spikey-dev-nw-vm-us's internal IP
+ping -c 3 <Enter  spikey-dev-nw-vm-us's internal IP here>
+
+
+
+Demo 3
+Deleting firewall  rules
+Remove the allow-internal firewall rules
+
+
+In the Console, navigate to Navigation menu> VPC network > Firewall rules.
+
+Check the icmp rule for automode nw and then click Delete. Click Delete to confirm the deletion.
+
+Wait for the firewall rule to be deleted.
+
+ssh to the us-vm SSH terminal.
+
+To test connectivity to eu-vm's internal IP, run the following command using eu-vm's internal IP:
+
+ping -c 3 <Enter eu-vm's internal IP here>
+
+Close the SSH terminal:
+
+exit
+
+In the Console, navigate to Navigation menu > VPC network > Firewall rules.
+
+Check the allow-ssh rule for automode and then click Delete. Click Delete to confirm the deletion.
+
+Wait for the firewall rule to be deleted.
+
+In the Console, navigate to Navigation menu > Compute Engine > VM instances.
+
+For us-vm, click SSH to launch a terminal and connect.
+
+
+Demo 4
+Adding network tags
+Go to the VM instances page. 
+Select an instance. spikey-dev-nw-vm-us
+  	On the VM instance details page, click Edit.
+In the Network tags section, specify one or more tags, separated by commas. - web-server
+Click Save.
+
+Create the tagged firewall rule
+
+In the Console, navigate to Navigation menu > VPC network > Firewall rules.
+Click Create Firewall Rule.
+
+Set the following values, leave all other values at their defaults and click Create:
+
+Property	Value (type value or select option as specified)
+Name	spikey-dev-allow-http-web-server
+Network	global
+Targets	Specified target tags
+Target tags	web-server
+Source filter	IP Ranges
+Source IP ranges	0.0.0.0/0
+Protocols and ports	Specified protocols and ports, and then check tcp, type: 80; 
+
+Click Create.
+Install nginx and customize the welcome page
+Install nginx on both VM instances and modify the welcome page to distinguish the servers.
+Still in the VM instances dialog, for blue, click SSH to launch a terminal and connect.
+Run the following command to install nginx:
+sudo apt-get install nginx-light -y
+Open the welcome page in the nano editor:
+sudo nano /var/www/html/index.nginx-debian.html
+
+
+Replace the <h1>Welcome to nginx!</h1> line with <h1>Welcome to the spikey sales server!</h1>.
+Press CTRL+o, ENTER, CTRL+x.
+Verify the change:
+cat /var/www/html/index.nginx-debian.html
+Close the SSH terminal 
+Test Connectivity
+Ssh to management-vm-us
+ping spikey-server-us external ip
+Ssh to spikey-server-eu
+Ping spikey-server-us
+Go to the VM instances page.
+Select an instance. spikey-server-us
+On the VM instance details page, click Edit.
+In the Network tags section, remove tags by clicking remove (X).
+Click Save.
+Ssh to management-vm-us
+ping spikey-server-us external ip
+Ssh to spikey-server-eu
+Ping spikey-server-us
+
+
+
+
+
+Demo 5
+Switch a VPC network from auto to custom and Add a subnet
+Go to the VPC networks page in the Google Cloud Platform Console.  spikey-globalvpc
+In the Mode column, click Auto to open the menu.
+Select Custom from the menu.
+Click OK to confirm.
+
+Add a subnet
+Go to the VPC networks page in the Google Cloud Platform Console. 
+Select the name of the network to bring up the details page.
+Click Add subnet.
+Specify the Name and Region of the new subnet. spikey-subnet-new
+Specify the IP address range of the subnet. 10.128.131.0/24
+Click Add.
+
+Demo 6
+Expand a subnet
+
+Go to the VPC networks page in the Google Cloud Platform Console. 
+Click on the network that contains the subnet you want to expand.
+Click on the subnet you want to expand.
+Click Edit.
+Enter the new range in the IP address range field. 10.128.128.0/20.
+Click Save.
+Deleting a subnet
+You can only delete manually created subnets. Automatically created subnets cannot be deleted individually; you must delete the entire VPC network.
+Go to the VPC networks page in the Google Cloud Platform Console. 
+Click on the name of the VPC network that contains the subnet.spikey-subnet-new
+Click on the name of the subnet.
+Click Delete subnet.
+Click Delete to confirm.
+Delete VMs in auto-network
+Delete VPC
+
+Module 3
+Demo 1
+Shared VPC
+   In Project 1, spikey-networks
+	Create VPC spikey-shared-vpc with 2 subnet us-east-subnet,us-west-subnet
+	Naviagte to shared vpc -throws error no permission.
+Navigate to iam, Switch to organization, give Compute Engine Shared VPC Admin role to owner account
+Naviagte to shared vpc 
+Set up shared vpc
+Choose only 1 subnet and choose project 2 
+	Add firewall rule for tcp 22 and icmp
+	Add vm- spikey-us-hq-vm
+	
+Switch to project 2, spikeysales-africa
+Create vm in shared vpc spikey-africa-hq-vm
+Ssh and ping each other
